@@ -6,6 +6,7 @@ import torch
 import naive_attention
 import tiled_attention
 import tiled_attention_2
+import online_softmax
 
 def attention_cpu(q, k, v):
     d = q.size(-1)
@@ -24,6 +25,9 @@ def attention_cuda_tiled(q, k, v):
 def attention_cuda_tiled_2(q, k, v):
     return tiled_attention_2.forward(q, k, v)
 
+def attention_cuda_online_softmax(q, k, v):
+    return online_softmax.forward(q, k, v)
+
 # -----------------------------
 # kernel selection
 # -----------------------------
@@ -31,6 +35,7 @@ KERNELS = {
     0: ("naive", attention_cuda_naive),
     1: ("tiled", attention_cuda_tiled),
     2: ("tiled_2", attention_cuda_tiled_2),
+    3: ("online_softmax", attention_cuda_online_softmax),
 }
 
 if len(sys.argv) < 2:
@@ -54,7 +59,7 @@ print(f"running kernel: {kernel_name}")
 # -----------------------------
 # test config
 # -----------------------------
-B, N, D = 2, 1024, 64
+B, N, D = 2, 4096, 64
 
 q = torch.randn(B, N, D, dtype=torch.float32)
 k = torch.randn(B, N, D, dtype=torch.float32)

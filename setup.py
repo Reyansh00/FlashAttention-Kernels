@@ -25,6 +25,13 @@ setup(
                 "tiled_attention_kernel_2.cu",
             ],
         ),
+        CUDAExtension(
+            name="online_softmax",
+            sources=[
+                "online_softmax.cpp",
+                "online_softmax_kernel.cu",
+            ],
+        ),
     ],
     cmdclass={"build_ext": BuildExtension},
 )
