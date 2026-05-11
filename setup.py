@@ -18,6 +18,13 @@ setup(
                 "tiled_attention_kernel.cu",
             ],
         ),
+        CUDAExtension(
+            name="tiled_attention_2",
+            sources=[
+                "tiled_attention_2.cpp",
+                "tiled_attention_kernel_2.cu",
+            ],
+        ),
     ],
     cmdclass={"build_ext": BuildExtension},
 )

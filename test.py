@@ -5,7 +5,7 @@ import torch
 
 import naive_attention
 import tiled_attention
-
+import tiled_attention_2
 
 def attention_cpu(q, k, v):
     d = q.size(-1)
@@ -21,6 +21,8 @@ def attention_cuda_naive(q, k, v):
 def attention_cuda_tiled(q, k, v):
     return tiled_attention.forward(q, k, v)
 
+def attention_cuda_tiled_2(q, k, v):
+    return tiled_attention_2.forward(q, k, v)
 
 # -----------------------------
 # kernel selection
@@ -28,12 +30,14 @@ def attention_cuda_tiled(q, k, v):
 KERNELS = {
     0: ("naive", attention_cuda_naive),
     1: ("tiled", attention_cuda_tiled),
+    2: ("tiled_2", attention_cuda_tiled_2),
 }
 
 if len(sys.argv) < 2:
     print("usage: python test.py <kernel_id>")
     print("0 -> naive")
     print("1 -> tiled")
+    print("2 -> tiled_2")
     sys.exit(1)
 
 kernel_id = int(sys.argv[1])
