@@ -32,6 +32,13 @@ setup(
                 "online_softmax_kernel.cu",
             ],
         ),
+        CUDAExtension(
+            name="online_warp",
+            sources=[
+                "online_warp.cpp",
+                "online_warp_kernel.cu",
+            ],
+        ),
     ],
     cmdclass={"build_ext": BuildExtension},
 )

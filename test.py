@@ -7,6 +7,7 @@ import naive_attention
 import tiled_attention
 import tiled_attention_2
 import online_softmax
+import online_warp
 
 def attention_cpu(q, k, v):
     d = q.size(-1)
@@ -28,6 +29,9 @@ def attention_cuda_tiled_2(q, k, v):
 def attention_cuda_online_softmax(q, k, v):
     return online_softmax.forward(q, k, v)
 
+def attention_cuda_online_warp(q, k, v):
+    return online_warp.forward(q, k, v)
+
 # -----------------------------
 # kernel selection
 # -----------------------------
@@ -36,6 +40,7 @@ KERNELS = {
     1: ("tiled", attention_cuda_tiled),
     2: ("tiled_2", attention_cuda_tiled_2),
     3: ("online_softmax", attention_cuda_online_softmax),
+    4: ("online_warp", attention_cuda_online_warp),
 }
 
 if len(sys.argv) < 2:
