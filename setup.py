@@ -41,4 +41,5 @@ setup(
         ),
     ],
     cmdclass={"build_ext": BuildExtension},
+    options={"build_ext": {"build_lib": "bin"}},
 )

@@ -32,16 +32,20 @@ plt.savefig("attention_runtime.png", dpi=300)
 
 plt.show()
 
-# speedup vs naive
+# speedup vs naive kernels only
 
 naive = df[df["kernel"] == "naive_attention"]
 
+my_kernels = [
+    "tiled_attention",
+    "tiled_attention_2",
+    "online_softmax",
+    "online_warp",
+]
+
 speedup_rows = []
 
-for kernel in df["kernel"].unique():
-
-    if kernel == "naive_attention":
-        continue
+for kernel in my_kernels:
 
     sub = df[df["kernel"] == kernel]
 
@@ -66,7 +70,7 @@ speedup_df = pd.concat(speedup_rows)
 
 plt.figure(figsize=(10, 6))
 
-for kernel in speedup_df["kernel"].unique():
+for kernel in my_kernels:
 
     sub = speedup_df[
         speedup_df["kernel"] == kernel
@@ -83,7 +87,7 @@ plt.xscale("log", base=2)
 
 plt.xlabel("Sequence Length (N)")
 plt.ylabel("Speedup vs Naive")
-plt.title("Attention Kernel Speedup")
+plt.title("Custom CUDA Attention Kernel Speedup")
 
 plt.legend()
 plt.grid(True)

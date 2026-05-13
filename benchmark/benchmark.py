@@ -4,6 +4,13 @@ import pandas as pd
 import torch.nn.functional as F
 from torch.nn.attention import sdpa_kernel, SDPBackend
 
+import sys
+from pathlib import Path
+ROOT = Path(__file__).resolve().parent.parent
+BIN = ROOT / "bin"
+sys.path.append(str(ROOT))
+sys.path.append(str(BIN))
+
 import naive_attention
 import tiled_attention
 import tiled_attention_2
