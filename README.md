@@ -4,7 +4,7 @@ A from-scratch CUDA implementation of scaled dot-product attention, progressivel
 
 Built and profiled on an **RTX 4050 Mobile (6GB VRAM)**.
 
-[Jump to Online Softmax Explanation](#online-softmax)
+[Jump to Online Softmax Explanation](#online-softmax--core-idea)
 ---
 
 ## Results
