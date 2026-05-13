@@ -4,6 +4,7 @@ A from-scratch CUDA implementation of scaled dot-product attention, progressivel
 
 Built and profiled on an **RTX 4050 Mobile (6GB VRAM)**.
 
+[Jump to Online Softmax Explanation](#online-softmax)
 ---
 
 ## Results
@@ -54,7 +55,7 @@ Replaces shared-memory tree reductions with warp shuffle instructions (`__shfl_x
 
 ---
 
-## Online Softmax — Core Idea
+## Online Softmax ~ Core Idea
 
 A standard softmax implementation needs the full score row before normalization:
 
@@ -131,6 +132,9 @@ python setup.py build_ext
 
 # Run benchmarks
 python benchmark/benchmark.py
+
+#Generate benchmark plots from `attention_benchmarks.csv`
+python benchmarks/plot1.py
 
 # Test correctness (kernel_id: 0=naive, 1=tiled, 2=tiled_2, 3=online_softmax, 4=online_warp)
 python tests/test.py <kernel_id>
