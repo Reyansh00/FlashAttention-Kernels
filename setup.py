@@ -7,36 +7,36 @@ setup(
         CUDAExtension(
             name="naive_attention",
             sources=[
-                "naive_attention.cpp",
-                "naive_attention_kernel.cu",
+                "cpp_extensions/naive_attention.cpp",
+                "kernels/naive_attention_kernel.cu",
             ],
         ),
         CUDAExtension(
             name="tiled_attention",
             sources=[
-                "tiled_attention.cpp",
-                "tiled_attention_kernel.cu",
+                "cpp_extensions/tiled_attention.cpp",
+                "kernels/tiled_attention_kernel.cu",
             ],
         ),
         CUDAExtension(
             name="tiled_attention_2",
             sources=[
-                "tiled_attention_2.cpp",
-                "tiled_attention_kernel_2.cu",
+                "cpp_extensions/tiled_attention_2.cpp",
+                "kernels/tiled_attention_kernel_2.cu",
             ],
         ),
         CUDAExtension(
             name="online_softmax",
             sources=[
-                "online_softmax.cpp",
-                "online_softmax_kernel.cu",
+                "cpp_extensions/online_softmax.cpp",
+                "kernels/online_softmax_kernel.cu",
             ],
         ),
         CUDAExtension(
             name="online_warp",
             sources=[
-                "online_warp.cpp",
-                "online_warp_kernel.cu",
+                "cpp_extensions/online_warp.cpp",
+                "kernels/online_warp_kernel.cu",
             ],
         ),
     ],

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+
+build/
+bin/
+*.so
+
+*.ncu-rep
+*.nsys-rep
+*.csv
+.vscode/
+.idea/
+
+profile/

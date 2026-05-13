@@ -3,6 +3,11 @@ import math
 import sys
 import torch
 
+from pathlib import Path
+ROOT = Path(__file__).resolve().parent.parent
+BIN = ROOT / "bin"
+sys.path.append(str(ROOT))
+sys.path.append(str(BIN))
 import naive_attention
 import tiled_attention
 import tiled_attention_2
@@ -14,7 +19,6 @@ def attention_cpu(q, k, v):
     scores = q @ k.transpose(-2, -1) / math.sqrt(d)
     probs = torch.softmax(scores, dim=-1)
     return probs @ v
-
 
 def attention_cuda_naive(q, k, v):
     return naive_attention.forward(q, k, v)
@@ -48,6 +52,8 @@ if len(sys.argv) < 2:
     print("0 -> naive")
     print("1 -> tiled")
     print("2 -> tiled_2")
+    print("3 -> online_softmax")
+    print("4 -> online_warp")
     sys.exit(1)
 
 kernel_id = int(sys.argv[1])
