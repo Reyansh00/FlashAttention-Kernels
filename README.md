@@ -1,4 +1,4 @@
-# FlashAttention — CUDA Kernel Optimization Study
+# FlashAttention ~ CUDA Kernel Optimization Study
 
 A from-scratch CUDA implementation of scaled dot-product attention, progressively optimized from a naive baseline to a FlashAttention-style forward pass using shared memory tiling, online softmax, and warp-level reductions.
 
